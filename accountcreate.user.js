@@ -26,7 +26,10 @@
         const json = await getJSON();
         var elemDiv = document.createElement('div');
         elemDiv.style.cssText = "text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;background: #211710 url('https://web.archive.org/web/20130108000138im_/http://minecraft.net/images/bg_top.png');color: white;";
-        elemDiv.innerHTML = "<center>This person's awesome minecraft account was created on: " + json.createdAt.split("T")[0] + "</center>";
+        var created = json.createdAt.split("T");
+        var mcdate = created[0].split("-").join('');
+        var mctime = created[1].slice(0,-1).split(":").join('');
+        elemDiv.innerHTML = "<center>This person's awesome minecraft account was created on: <a href='https://web.archive.org/web/" + mcdate+mctime + "/http://minecraft.net/'>" + json.createdAt.split("T")[0] + "</a></center>";
         document.body.insertBefore(elemDiv, document.body.firstChild);
     }
     caller();
